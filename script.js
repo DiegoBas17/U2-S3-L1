@@ -69,8 +69,35 @@ form.addEventListener("submit", (event) => {
 function visualizzatoreDiPets() {
   petList.innerHTML = "";
   pets.forEach((pet, index) => {
-    const petItem = document.createElement("div");
+    /* const petItem = document.createElement("div");
     petItem.innerHTML = `Nome: ${pet.petName}<br>Proprietario: ${pet.ownerName}<br>Specie: ${pet.species}<br>Razza: ${pet.breed}`;
+    petList.appendChild(petItem); */
+    /* creato una card cpn bootstrap */
+    const petItem = document.createElement("div");
+    petItem.classList.add("card", "m-2", "w-25");
+    const petCardBody = document.createElement("div");
+    petCardBody.classList.add("card-body");
+    const petTitleName = document.createElement("h5");
+    petTitleName.classList.add("card-title");
+    petTitleName.textContent = pet.petName;
+    petCardBody.appendChild(petTitleName);
+
+    const ownerParagrafo = document.createElement("p");
+    ownerParagrafo.classList.add("card-text");
+    ownerParagrafo.textContent = `Proprietario: ${pet.ownerName}`;
+    petCardBody.appendChild(ownerParagrafo);
+
+    const speciesParagrafo = document.createElement("p");
+    speciesParagrafo.classList.add("card-text");
+    speciesParagrafo.textContent = `Specie: ${pet.species}`;
+    petCardBody.appendChild(speciesParagrafo);
+
+    const breedParagrafo = document.createElement("p");
+    breedParagrafo.classList.add("card-text");
+    breedParagrafo.textContent = `Razza: ${pet.breed}`;
+    petCardBody.appendChild(breedParagrafo);
+
+    petItem.appendChild(petCardBody);
     petList.appendChild(petItem);
 
     // Verifico se ci sono altri animali con lo stesso proprietario
@@ -80,7 +107,6 @@ function visualizzatoreDiPets() {
         console.log(
           `${pet.ownerName} è il proprietario di ${pet.petName} e ${otherPet.petName}`
         );
-        break;
       }
     }
   });
