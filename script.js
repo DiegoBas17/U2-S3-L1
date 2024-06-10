@@ -32,7 +32,17 @@ console.log(utente1.isSameAge(utente2));
 console.log(utente1.isSameAge(utente3));
 console.log(utente1.isSameAge(utente4));
 console.log(utente2.isSameAge(utente1));
+console.log(utente2.isSameAge(utente2));
+console.log(utente2.isSameAge(utente3));
 console.log(utente2.isSameAge(utente4));
+console.log(utente3.isSameAge(utente1));
+console.log(utente3.isSameAge(utente2));
+console.log(utente3.isSameAge(utente3));
+console.log(utente3.isSameAge(utente4));
+console.log(utente4.isSameAge(utente1));
+console.log(utente4.isSameAge(utente2));
+console.log(utente4.isSameAge(utente3));
+console.log(utente4.isSameAge(utente4));
 
 /*creazione del form */
 class Pet {
@@ -67,7 +77,6 @@ form.addEventListener("submit", (event) => {
 });
 
 function visualizzatoreDiPets() {
-  petList.innerHTML = "";
   pets.forEach((pet, index) => {
     /* const petItem = document.createElement("div");
     petItem.innerHTML = `Nome: ${pet.petName}<br>Proprietario: ${pet.ownerName}<br>Specie: ${pet.species}<br>Razza: ${pet.breed}`;
