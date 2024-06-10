@@ -54,15 +54,34 @@ const pets = [];
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const formData = new FormData(form);
-  const petName = formData.get("petName");
-  const ownerName = formData.get("ownerName");
-  const species = formData.get("species");
-  const breed = formData.get("breed");
+  const petName = document.getElementById("petName").value;
+  const ownerName = document.getElementById("ownerName").value;
+  const species = document.getElementById("species").value;
+  const breed = document.getElementById("breed").value;
 
   const newPet = new Pet(petName, ownerName, species, breed);
   pets.push(newPet);
 
-  displayPets();
+  visualizzatoreDiPets();
   form.reset();
 });
+
+function visualizzatoreDiPets() {
+  petList.innerHTML = "";
+  pets.forEach((pet, index) => {
+    const petItem = document.createElement("div");
+    petItem.innerHTML = `Nome: ${pet.petName}<br>Proprietario: ${pet.ownerName}<br>Specie: ${pet.species}<br>Razza: ${pet.breed}`;
+    petList.appendChild(petItem);
+
+    // Verifico se ci sono altri animali con lo stesso proprietario
+    for (let i = 0; i < index; i++) {
+      const otherPet = pets[i];
+      if (pet.isSameOwner(otherPet)) {
+        console.log(
+          `${pet.ownerName} è il proprietario di ${pet.petName} e ${otherPet.petName}`
+        );
+        break;
+      }
+    }
+  });
+}
